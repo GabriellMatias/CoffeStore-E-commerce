@@ -75,3 +75,21 @@ export const ContainerHeader = styled.section`
     }
   }
 `
+export const ContainerCoffeList = styled.div`
+  > h1 {
+    margin: 3.2rem 0 5.4rem 16rem;
+    font-family: 'Baloo 2';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 3.2rem;
+    line-height: 130%;
+  }
+  > main {
+    width: 1120px;
+    margin: 0 16rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 3.2rem 4rem;
+    padding-bottom: 16rem;
+  }
+`

@@ -1,6 +1,7 @@
 import { ShoppingCart } from 'phosphor-react'
-import { Container, ContainerHeader } from './style'
-import coffeImg from '../../../public/Image_Coffe_Home.png'
+import { Container, ContainerCoffeList, ContainerHeader } from './style'
+import coffeImg from '../../assets/Image_Coffe_Home.png'
+import { CoffeCard } from '../../components/CoffeCard'
 
 export function Home() {
   return (
@@ -44,6 +45,20 @@ export function Home() {
 
         <img src={coffeImg} alt="Imagem de um copo de cafe ilustrativa" />
       </ContainerHeader>
+
+      <ContainerCoffeList>
+        <h1>Nossos Cafés</h1>
+
+        <main>
+          <CoffeCard />
+          <CoffeCard />
+          <CoffeCard />
+          <CoffeCard />
+          <CoffeCard />
+          <CoffeCard />
+          <CoffeCard />
+        </main>
+      </ContainerCoffeList>
     </Container>
   )
 }
