@@ -1,11 +1,12 @@
 import styled from 'styled-components'
 
 export const HeaderContainer = styled.header`
+  width: 100vw;
   display: flex;
   flex-direction: row;
   padding: 3.2rem 16rem;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   position: absolute;
   gap: 82rem;
   height: 10.4rem;
@@ -28,6 +29,7 @@ export const HeaderContainer = styled.header`
     border-radius: 6px;
   }
   button {
+    cursor: pointer;
     border: none;
     background: ${(props) => props.theme['yellow-light']};
     color: ${(props) => props.theme['yellow-dark']};

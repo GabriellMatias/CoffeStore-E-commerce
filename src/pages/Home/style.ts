@@ -9,6 +9,7 @@ export const Container = styled.main`
 `
 
 export const ContainerHeader = styled.section`
+  justify-content: center;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -18,7 +19,7 @@ export const ContainerHeader = styled.section`
     display: flex;
     flex-direction: column;
 
-    h1 {
+    > h1 {
       width: 58.8rem;
       height: 12.4rem;
       font-family: 'Baloo 2', sans-serif;
@@ -28,7 +29,7 @@ export const ContainerHeader = styled.section`
       line-height: 130%;
       padding-bottom: 1.6rem;
     }
-    p {
+    > p {
       width: 58.8rem;
       height: 5.2rem;
       font-family: 'Roboto', sans-serif;
@@ -41,7 +42,7 @@ export const ContainerHeader = styled.section`
       margin-bottom: 6.6rem;
     }
 
-    ul {
+    > ul {
       width: 56.7rem;
       height: 8.4rem;
       display: flex;
@@ -76,8 +77,13 @@ export const ContainerHeader = styled.section`
   }
 `
 export const ContainerCoffeList = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 16rem;
   > h1 {
-    margin: 3.2rem 0 5.4rem 16rem;
+    margin: 3.2rem 0 5.4rem -87rem;
     font-family: 'Baloo 2';
     font-style: normal;
     font-weight: 800;
@@ -85,11 +91,10 @@ export const ContainerCoffeList = styled.div`
     line-height: 130%;
   }
   > main {
-    width: 1120px;
-    margin: 0 16rem;
+    width: 112rem;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 3.2rem 4rem;
+    grid-gap: 3.2rem 4rem;
     padding-bottom: 16rem;
   }
 `
