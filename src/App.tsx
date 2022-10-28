@@ -5,6 +5,7 @@ import { defaultTheme } from './styles/themes/default'
 import { GlobalStyle } from './styles/global'
 import { Home } from './pages/Home'
 import { CheckoutPage } from './pages/Checkout'
+import { SucessPage } from './pages/Sucess'
 
 export function App() {
   return (
@@ -15,6 +16,7 @@ export function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/sucess" element={<SucessPage />} />
         </Routes>
       </ThemeProvider>
     </BrowserRouter>
