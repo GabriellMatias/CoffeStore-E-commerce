@@ -16,28 +16,50 @@ export const CardContainer = styled.div`
       height: 120px;
       margin-top: -21px;
     }
-    span {
-      font-family: 'Roboto';
-      font-style: normal;
-      font-weight: 700;
-      font-size: 10px;
-      line-height: 130%;
-      text-transform: uppercase;
-
-      border-radius: 100px;
-      width: 81px;
-      height: 21px;
-      margin-top: 1.3rem;
-
+    .textContainer {
       display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      padding: 0.4rem 0.8rem;
-      gap: 4rem;
+      gap: 0.8rem;
 
-      color: ${(props) => props.theme['yellow-dark']};
-      background-color: ${(props) => props.theme['yellow-light']};
+      .type {
+        font-weight: 700;
+        font-size: 10px;
+        line-height: 130%;
+        text-transform: uppercase;
+
+        border-radius: 100px;
+        width: fit-content;
+        height: 21px;
+        margin-top: 1.3rem;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0.4rem 0.8rem;
+        gap: 4rem;
+
+        color: ${(props) => props.theme['yellow-dark']};
+        background-color: ${(props) => props.theme['yellow-light']};
+      }
+      .class {
+        font-weight: 700;
+        font-size: 10px;
+        line-height: 130%;
+        text-transform: uppercase;
+
+        border-radius: 100px;
+        width: fit-content;
+        height: 21px;
+        margin-top: 1.3rem;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0.4rem 0.8rem;
+        gap: 4rem;
+
+        color: ${(props) => props.theme['yellow-dark']};
+        background-color: ${(props) => props.theme['yellow-light']};
+      }
     }
   }
 
@@ -48,7 +70,6 @@ export const CardContainer = styled.div`
     h1 {
       margin: 1.6rem 0 0.8rem 0;
       font-family: 'Baloo 2';
-      font-style: normal;
       font-weight: 700;
       font-size: 20px;
       line-height: 130%;
@@ -56,18 +77,16 @@ export const CardContainer = styled.div`
     }
     h2 {
       margin-bottom: 3.3rem;
-      font-family: 'Roboto';
-      font-style: normal;
       font-weight: 400;
       font-size: 14px;
       line-height: 130%;
       color: ${(props) => props.theme['base-label']};
       text-align: center;
+      padding: 0 2rem;
     }
   }
   footer {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 0 2.4rem 2rem 2.4rem;
@@ -95,6 +114,7 @@ export const CardContainer = styled.div`
         padding: 0.8rem;
         gap: 0.8rem;
         border: none;
+        cursor: pointer;
 
         width: 38px;
         height: 38px;
@@ -110,7 +130,6 @@ export const CardContainer = styled.div`
 
     span {
       font-family: 'Baloo 2';
-      font-style: normal;
       font-weight: 800;
       font-size: 24px;
       line-height: 130%;

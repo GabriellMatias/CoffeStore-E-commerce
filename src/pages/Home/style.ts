@@ -43,17 +43,14 @@ export const ContainerHeader = styled.section`
     }
 
     > ul {
-      width: 56.7rem;
+      width: auto;
       height: 8.4rem;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 1.2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 1.2rem;
       list-style: none;
-
       li {
+        width: max-content;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -70,7 +67,18 @@ export const ContainerHeader = styled.section`
           width: 3.2rem;
           height: 3.2rem;
           border-radius: 999px;
+        }
+        .shoppingCart {
           background: ${(props) => props.theme['yellow-dark']};
+        }
+        .package {
+          background: ${(props) => props.theme['base-text']};
+        }
+        .deliveryTime {
+          background: ${(props) => props.theme.yellow};
+        }
+        .coffee {
+          background: ${(props) => props.theme.purple};
         }
       }
     }

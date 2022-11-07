@@ -1,9 +1,21 @@
-import { ShoppingCart } from 'phosphor-react'
+import { ShoppingCart, Coffee, Package, Timer } from 'phosphor-react'
 import { Container, ContainerCoffeList, ContainerHeader } from './style'
 import coffeImg from '../../assets/Image_Coffe_Home.png'
-import { CoffeCard } from '../../components/CoffeCard'
+import { CoffeCard, CoffeCardProps } from '../../components/CoffeCard'
+import { api } from '../../components/services/api'
+import { useEffect, useState } from 'react'
 
 export function Home() {
+  const [productData, setProductData] = useState<CoffeCardProps[]>([])
+
+  useEffect(() => {
+    async function loadProducts() {
+      const reply = await api.get<CoffeCardProps[]>('produtos')
+      setProductData(reply.data)
+    }
+    loadProducts()
+  }, [])
+
   return (
     <Container>
       <ContainerHeader>
@@ -17,28 +29,28 @@ export function Home() {
           <ul>
             {/* transformar em componente */}
             <li>
-              <i>
-                <ShoppingCart size={16} weight="fill" />
+              <i className="shoppingCart">
+                <ShoppingCart size={16} weight="fill" color="#fff" />
               </i>
               <span>Compra simples e segura</span>
             </li>
             <li>
-              <i>
-                <ShoppingCart size={16} weight="fill" />
+              <i className="package">
+                <Package size={16} weight="fill" color="#fff" />
               </i>
-              <span>Compra simples e segura</span>
+              <span>Embalagem Mantem o Cafe Intacto</span>
             </li>
             <li>
-              <i>
-                <ShoppingCart size={16} weight="fill" />
+              <i className="deliveryTime">
+                <Timer size={16} weight="fill" color="#fff" />
               </i>
-              <span>Compra simples e segura</span>
+              <span>Entrega Rapida e Rastreada</span>
             </li>
             <li>
-              <i>
-                <ShoppingCart size={16} weight="fill" />
+              <i className="coffee">
+                <Coffee size={16} weight="fill" color="#fff" />
               </i>
-              <span>Compra simples e segura</span>
+              <span>O Cafe chega Fresquinho ate voce</span>
             </li>
           </ul>
         </div>
@@ -50,13 +62,18 @@ export function Home() {
         <h1>Nossos Cafés</h1>
 
         <main>
-          <CoffeCard />
-          <CoffeCard />
-          <CoffeCard />
-          <CoffeCard />
-          <CoffeCard />
-          <CoffeCard />
-          <CoffeCard />
+          {productData.map((product) => {
+            return (
+              <CoffeCard
+                key={product.id}
+                type={product.type}
+                title={product.title}
+                classType={product.classType}
+                description={product.description}
+                imgUrl={product.imgUrl}
+              />
+            )
+          })}
         </main>
       </ContainerCoffeList>
     </Container>

@@ -1,4 +1,5 @@
 import { CurrencyDollar, MapPin, CreditCard, Money, Bank } from 'phosphor-react'
+import { Link } from 'react-router-dom'
 import { CoffeSelectedCard } from '../../components/CoffeSelectedCard'
 import {
   CheckOutContainer,
@@ -91,7 +92,9 @@ export function CheckoutPage() {
               <span>R$ 33,20</span>
             </div>
           </section>
-          <button type="submit">Confirmar Pedido</button>
+          <Link to={'/sucess'}>
+            <button type="submit">Confirmar Pedido</button>
+          </Link>
         </SelectedCoffes>
       </SelectedContainer>
     </CheckOutContainer>

@@ -1,0 +1,113 @@
+{
+  "produtos":[
+  {
+    "id": 1,
+    "type": "Tradicional",
+    "title": "Expresso Tradicional",
+    "description":"O Tradicional Café feito com agua quente e graos moidos",
+    "imgUrl": "https://imgcloud.com.br/share/doKBmrlpadtmhdsY"
+  },
+  {
+    "id": 2,
+    "type": "Tradicional",
+    "title": "Expresso Americano",
+    "description":"Expresso diluido, menos intenso que o tradicional",
+    "imgUrl": "https://imgcloud.com.br/share/66FYxB9JH6mfu6HJ"
+  },
+  {
+    "id": 3,
+    "type": "Tradicional",
+    "title": "Expresso Cremoso",
+    "description":"Café Expresso Tradicional com espuma cremosa",
+    "imgUrl": "https://imgcloud.com.br/share/Z1huIGzwsGwinXiG"
+  },
+  {
+    "id": 4,
+    "type": "Tradicional",
+    "classType": "Gelado",
+    "title": "Expresso Gelado",
+    "description":"Bebida preparada com café expresso e cubos de gelo",
+    "imgUrl": "https://imgcloud.com.br/share/rKsiQNvmD9rD1MIK"
+  },
+  {
+    "id": 5,
+    "type": "Tradicional",
+    "classType": "Com leite",
+    "title": "Café com Leite",
+    "description":"Meio a meio de expresso tradicional com leite vaporizado",
+    "imgUrl": "https://imgcloud.com.br/share/9kKp1uEbxdT8mumk"
+  },
+  {
+    "id": 6,
+    "type": "Tradicional",
+    "classType": "Com leite",
+    "title": "Latte",
+    "description":"Uma dose de café expresso com o dobro de leite e espuma cremosa",
+    "imgUrl": "https://imgcloud.com.br/share/I6hVaPPh6LkZMrYt"
+  },
+  {
+    "id": 7,
+    "type": "Tradicional",
+    "classType": "Com leite",
+    "title": "Cappucino",
+    "description":"Bebida com canela feita de doses iguais de café, leite e espuma",
+    "imgUrl": "https://imgcloud.com.br/share/6bGmf8duljPI9sGF"
+  },
+  {
+    "id": 8,
+    "type": "Tradicional",
+    "classType": "Com leite",
+    "title": "Macchiato",
+    "description":"Café expresso misturado com um pouco de leite quente e espuma",
+    "imgUrl": "https://imgcloud.com.br/share/I6hVaPPh6LkZMrYt"
+  },
+  {
+    "id": 9,
+    "type": "Tradicional",
+    "classType": "Com leite",
+    "title": "Mocaccino",
+    "description":"Café expresso com calda de chocolate, pouco leite e espuma",
+    "imgUrl": "https://imgcloud.com.br/share/xoTn3FKakcj4jPct"
+  },
+  {
+    "id": 10,
+    "type": "Especial",
+    "title": "Chocolate Quente",
+    "classType": "Com leite",
+    "description":"Bebida feita com chocolate dissolvido no leite quente e café",
+    "imgUrl": "https://imgcloud.com.br/share/bskqSi20l7280ANI"
+  },
+  {
+    "id": 11,
+    "type": "Especial",
+    "classType": "Alcoólico gelado",
+    "title": "Cubano",
+    "description":"Drink gelado de café expresso com rum, creme de leite e hortelã",
+    "imgUrl": "https://imgcloud.com.br/share/kViDSrI2nhydZnzT"
+  },
+  {
+    "id": 12,
+    "type": "Especial",
+    "title": "Havaiano",
+    "description":"Bebida adocicada preparada com café e leite de coco",
+    "imgUrl": "https://imgcloud.com.br/share/eBrRjShVsWrRD7iC"
+  },
+  {
+    "id": 13,
+    "type": "Especial",
+    "title": "Árabe",
+    "description":"Bebida preparada com grãos de café árabe e especiarias",
+    "imgUrl": "https://imgcloud.com.br/share/RCNdSvvq1eNKq4MY"
+  },
+  {
+    "id": 14,
+    "type": "Especial",
+    "classType": "Alcoólico",
+    "title": "Irlandês",
+    "description":"Bebida a base de café, uísque irlandês, açúcar e chantilly",
+    "imgUrl": "https://imgcloud.com.br/share/fV00Ok0mqEnYNAQ7"
+  }
+
+  ]
+
+}
