@@ -2,6 +2,7 @@
   "produtos":[
   {
     "id": 1,
+    "price": 9.9,
     "type": "Tradicional",
     "title": "Expresso Tradicional",
     "description":"O Tradicional Café feito com agua quente e graos moidos",
@@ -9,6 +10,7 @@
   },
   {
     "id": 2,
+    "price": 9.9,
     "type": "Tradicional",
     "title": "Expresso Americano",
     "description":"Expresso diluido, menos intenso que o tradicional",
@@ -16,6 +18,7 @@
   },
   {
     "id": 3,
+    "price": 9.9,
     "type": "Tradicional",
     "title": "Expresso Cremoso",
     "description":"Café Expresso Tradicional com espuma cremosa",
@@ -23,6 +26,7 @@
   },
   {
     "id": 4,
+    "price": 9.9,
     "type": "Tradicional",
     "classType": "Gelado",
     "title": "Expresso Gelado",
@@ -31,6 +35,7 @@
   },
   {
     "id": 5,
+    "price": 9.9,
     "type": "Tradicional",
     "classType": "Com leite",
     "title": "Café com Leite",
@@ -39,6 +44,7 @@
   },
   {
     "id": 6,
+    "price": 9.9,
     "type": "Tradicional",
     "classType": "Com leite",
     "title": "Latte",
@@ -47,6 +53,7 @@
   },
   {
     "id": 7,
+    "price": 9.9,
     "type": "Tradicional",
     "classType": "Com leite",
     "title": "Cappucino",
@@ -55,6 +62,7 @@
   },
   {
     "id": 8,
+    "price": 9.9,
     "type": "Tradicional",
     "classType": "Com leite",
     "title": "Macchiato",
@@ -63,6 +71,7 @@
   },
   {
     "id": 9,
+    "price": 9.9,
     "type": "Tradicional",
     "classType": "Com leite",
     "title": "Mocaccino",
@@ -71,6 +80,7 @@
   },
   {
     "id": 10,
+    "price": 9.9,
     "type": "Especial",
     "title": "Chocolate Quente",
     "classType": "Com leite",
@@ -79,6 +89,7 @@
   },
   {
     "id": 11,
+    "price": 9.9,
     "type": "Especial",
     "classType": "Alcoólico gelado",
     "title": "Cubano",
@@ -87,6 +98,7 @@
   },
   {
     "id": 12,
+    "price": 9.9,
     "type": "Especial",
     "title": "Havaiano",
     "description":"Bebida adocicada preparada com café e leite de coco",
@@ -94,6 +106,7 @@
   },
   {
     "id": 13,
+    "price": 9.9,
     "type": "Especial",
     "title": "Árabe",
     "description":"Bebida preparada com grãos de café árabe e especiarias",
@@ -101,6 +114,7 @@
   },
   {
     "id": 14,
+    "price": 9.9,
     "type": "Especial",
     "classType": "Alcoólico",
     "title": "Irlandês",

@@ -1,6 +1,8 @@
 import { CurrencyDollar, MapPin, CreditCard, Money, Bank } from 'phosphor-react'
 import { Link } from 'react-router-dom'
 import { CoffeSelectedCard } from '../../components/CoffeSelectedCard'
+import { useCart } from '../../hooks/useCart'
+import { formatPrice } from '../../utils/format'
 import {
   CheckOutContainer,
   FormsContainer,
@@ -12,6 +14,24 @@ import {
 } from './style'
 
 export function CheckoutPage() {
+  const { cart, newAmount } = useCart()
+  const initialPrices = formatPrice(0)
+  const deliveryPriceWithProducts = formatPrice(3.5)
+
+  // const cartFormatted = cart.map((product) => ({
+  //   ...product,
+  //   priceFormatted: formatPrice(product.price),
+  //   subTotal: formatPrice(product.price * product.amount),
+  // }))
+  const totalWithoutDelivery = cart.reduce((sumTotal, product) => {
+    return sumTotal + product.price * product.amount
+  }, 0)
+
+  const totalWithoutDeliveryFormated = formatPrice(totalWithoutDelivery)
+
+  const total = newAmount ? totalWithoutDelivery + 3.5 : totalWithoutDelivery
+  const totalFormated = formatPrice(total)
+
   return (
     /* utilizar react-hook-forms */
     <CheckOutContainer>
@@ -73,23 +93,35 @@ export function CheckoutPage() {
       <SelectedContainer>
         <h1>Cafés Selecionados</h1>
         <SelectedCoffes>
-          <CoffeSelectedCard />
-          <hr />
-          <CoffeSelectedCard />
-          <hr />
+          {cart.map((product) => {
+            return (
+              <div key={product.id}>
+                <CoffeSelectedCard
+                  id={product.id}
+                  title={product.title}
+                  imgUrl={product.imgUrl}
+                  amount={product.amount}
+                  priceFormatted={product.priceFormatted}
+                />
+                <hr />
+              </div>
+            )
+          })}
 
           <section className="prices">
             <div>
               <p>Total itens</p>
-              <span>R$ 29,00</span>
+              <span>{totalWithoutDeliveryFormated}</span>
             </div>
             <div>
               <p>Entrega</p>
-              <span>R$ 3,50</span>
+              <span>
+                {newAmount ? deliveryPriceWithProducts : initialPrices}
+              </span>
             </div>
             <div className="totalPrices">
               <p>Total</p>
-              <span>R$ 33,20</span>
+              <span>{newAmount ? totalFormated : initialPrices}</span>
             </div>
           </section>
           <Link to={'/sucess'}>

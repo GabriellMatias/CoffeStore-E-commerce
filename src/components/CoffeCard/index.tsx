@@ -1,22 +1,26 @@
 import { ShoppingCart } from 'phosphor-react'
 import { CardContainer } from './style'
-// import { useCart } from '../../hooks/useCart'
+import { useCart } from '../../hooks/useCart'
 
 export interface CoffeCardProps {
-  id?: string
-  type: string
+  id: number
+  type?: string
   classType?: string
   title: string
-  description: string
+  description?: string
   imgUrl: string
+  amount?: number
+  price?: number
+  priceFormatted: string
 }
 
 export function CoffeCard(props: CoffeCardProps) {
-  // const { addProduct } = useCart()
+  const { addProduct } = useCart()
 
-  // function handleAddProduct(id: number) {
-  //   addProduct(id)
-  // }
+  function handleAddProduct(id: number) {
+    console.log(addProduct)
+    addProduct(id)
+  }
 
   return (
     <CardContainer>
@@ -32,11 +36,11 @@ export function CoffeCard(props: CoffeCardProps) {
         <h2>{props.description}</h2>
       </main>
       <footer>
-        <span>R$9,90</span>
+        <span>{props.priceFormatted}</span>
         <div>
           {/* AJEITAR CSS DO INPUT */}
           <input type="number" min={0} />
-          <button /* onClick={() => handleAddProduct(1)} */>
+          <button type="button" onClick={() => handleAddProduct(props.id)}>
             <ShoppingCart size={22} weight="fill" />
           </button>
         </div>

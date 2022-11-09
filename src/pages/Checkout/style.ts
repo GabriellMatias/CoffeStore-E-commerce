@@ -228,7 +228,8 @@ export const SelectedCoffes = styled.div`
   gap: 24px;
 
   width: 448px;
-  height: 498px;
+  min-height: 498px;
+  height: fit-content;
 
   background: ${(props) => props.theme['base-card']};
   border-radius: 6px 44px;

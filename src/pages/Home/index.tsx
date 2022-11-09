@@ -1,20 +1,11 @@
 import { ShoppingCart, Coffee, Package, Timer } from 'phosphor-react'
 import { Container, ContainerCoffeList, ContainerHeader } from './style'
 import coffeImg from '../../assets/Image_Coffe_Home.png'
-import { CoffeCard, CoffeCardProps } from '../../components/CoffeCard'
-import { api } from '../../components/services/api'
-import { useEffect, useState } from 'react'
+import { CoffeCard } from '../../components/CoffeCard'
+import { useCart } from '../../hooks/useCart'
 
 export function Home() {
-  const [productData, setProductData] = useState<CoffeCardProps[]>([])
-
-  useEffect(() => {
-    async function loadProducts() {
-      const reply = await api.get<CoffeCardProps[]>('produtos')
-      setProductData(reply.data)
-    }
-    loadProducts()
-  }, [])
+  const { productData } = useCart()
 
   return (
     <Container>
@@ -66,11 +57,13 @@ export function Home() {
             return (
               <CoffeCard
                 key={product.id}
+                id={product.id}
                 type={product.type}
                 title={product.title}
                 classType={product.classType}
                 description={product.description}
                 imgUrl={product.imgUrl}
+                priceFormatted={product.priceFormatted}
               />
             )
           })}
