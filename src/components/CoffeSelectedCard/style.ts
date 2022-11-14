@@ -45,7 +45,7 @@ export const SelectedCoffeContainer = styled.div`
         border-radius: 6px;
       }
 
-      button {
+      .removeButton {
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -79,5 +79,54 @@ export const SelectedCoffeContainer = styled.div`
   > span {
     font-weight: 700;
     color: ${(props) => props.theme['base-text']};
+  }
+`
+const baseButton = styled.button`
+  min-width: 20px;
+  min-height: 32px;
+
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+`
+
+export const AddButton = styled(baseButton)`
+  &::before {
+    content: '';
+    border-radius: 8px;
+    display: block;
+    background: ${(props) => props.theme.purple};
+    width: 1.3px;
+    height: 10.9px;
+    transform: translate(6.5px);
+  }
+  &::after {
+    content: '';
+    border-radius: 8px;
+    display: block;
+    background: ${(props) => props.theme.purple};
+    width: 10.94px;
+    height: 1.31px;
+  }
+  &:hover {
+    background: ${(props) => props.theme['base-hover']};
+    border-radius: 6px;
+  }
+`
+export const MinusButton = styled(baseButton)`
+  &::after {
+    content: '';
+    border-radius: 8px;
+    display: block;
+    background: ${(props) => props.theme.purple};
+    width: 10.94px;
+    height: 1.31px;
+  }
+  &:hover {
+    background: ${(props) => props.theme['base-hover']};
+    border-radius: 6px;
   }
 `

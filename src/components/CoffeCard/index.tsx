@@ -1,5 +1,5 @@
 import { ShoppingCart } from 'phosphor-react'
-import { CardContainer } from './style'
+import { AddButton, CardContainer, MinusButton } from './style'
 import { useCart } from '../../hooks/useCart'
 
 export interface CoffeCardProps {
@@ -9,17 +9,40 @@ export interface CoffeCardProps {
   title: string
   description?: string
   imgUrl: string
-  amount?: number
+  amount: number
   price?: number
   priceFormatted: string
 }
 
 export function CoffeCard(props: CoffeCardProps) {
-  const { addProduct } = useCart()
+  const { addProduct, cart, updateProductAmount } = useCart()
+
+  const currentItem = cart.find((product) => {
+    return product.id === props.id
+  })
+  const amount = cart.map((product) => {
+    return product.id === props.id && product.amount
+  })
 
   function handleAddProduct(id: number) {
-    console.log(addProduct)
     addProduct(id)
+  }
+  /* repetida [fazer componente] */
+  function handleProductIncrement(id: number) {
+    const newCart = [...cart]
+    const productExists = newCart.find((product) => product.id === id)
+    const currentAmount = productExists ? productExists.amount : 0
+    const incrementAmount = currentAmount + 1
+    updateProductAmount({ id, amount: incrementAmount })
+  }
+
+  function handleProductDecrement(id: number) {
+    const newCart = [...cart]
+    const productExists = newCart.find((product) => product.id === id)
+    const currentAmount = productExists ? productExists.amount : 0
+    const decrementAmount = currentAmount - 1
+
+    updateProductAmount({ id, amount: decrementAmount })
   }
 
   return (
@@ -37,10 +60,21 @@ export function CoffeCard(props: CoffeCardProps) {
       </main>
       <footer>
         <span>{props.priceFormatted}</span>
-        <div>
-          {/* AJEITAR CSS DO INPUT */}
-          <input type="number" min={0} />
-          <button type="button" onClick={() => handleAddProduct(props.id)}>
+        <div className="inputStyle">
+          <MinusButton
+            title="Retirar mais um café"
+            onClick={() => handleProductDecrement(props.id)}
+          />
+          <span>{currentItem ? amount : 0}</span>
+          <AddButton
+            title="Adicionar mais um café"
+            onClick={() => handleProductIncrement(props.id)}
+          />
+          <button
+            className="shoppingCartButton"
+            type="button"
+            onClick={() => handleAddProduct(props.id)}
+          >
             <ShoppingCart size={22} weight="fill" />
           </button>
         </div>

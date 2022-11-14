@@ -18,16 +18,9 @@ export function CheckoutPage() {
   const initialPrices = formatPrice(0)
   const deliveryPriceWithProducts = formatPrice(3.5)
 
-  // const cartFormatted = cart.map((product) => ({
-  //   ...product,
-  //   priceFormatted: formatPrice(product.price),
-  //   subTotal: formatPrice(product.price * product.amount),
-  // }))
   const totalWithoutDelivery = cart.reduce((sumTotal, product) => {
     return sumTotal + product.price * product.amount
   }, 0)
-
-  const totalWithoutDeliveryFormated = formatPrice(totalWithoutDelivery)
 
   const total = newAmount ? totalWithoutDelivery + 3.5 : totalWithoutDelivery
   const totalFormated = formatPrice(total)
@@ -111,17 +104,17 @@ export function CheckoutPage() {
           <section className="prices">
             <div>
               <p>Total itens</p>
-              <span>{totalWithoutDeliveryFormated}</span>
+              <span>{newAmount}</span>
             </div>
             <div>
               <p>Entrega</p>
               <span>
-                {newAmount ? deliveryPriceWithProducts : initialPrices}
+                {cart.length ? deliveryPriceWithProducts : initialPrices}
               </span>
             </div>
             <div className="totalPrices">
               <p>Total</p>
-              <span>{newAmount ? totalFormated : initialPrices}</span>
+              <span>{cart.length ? totalFormated : initialPrices}</span>
             </div>
           </section>
           <Link to={'/sucess'}>

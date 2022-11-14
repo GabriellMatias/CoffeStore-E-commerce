@@ -95,20 +95,9 @@ export const CardContainer = styled.div`
       gap: 0.8rem;
       display: flex;
       justify-content: space-between;
+      align-items: center;
 
-      input {
-        padding: 0.8rem;
-        gap: 0.4rem;
-        border: none;
-
-        width: 72px;
-        height: 38px;
-
-        background: ${(props) => props.theme['base-button']};
-        border-radius: 6px;
-      }
-
-      button {
+      .shoppingCartButton {
         display: flex;
         align-items: center;
         padding: 0.8rem;
@@ -127,8 +116,13 @@ export const CardContainer = styled.div`
         }
       }
     }
+    .inputStyle {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
 
-    span {
+    > span {
       font-family: 'Baloo 2';
       font-weight: 800;
       font-size: 24px;
@@ -138,5 +132,54 @@ export const CardContainer = styled.div`
 
       color: ${(props) => props.theme['base-text']};
     }
+  }
+`
+const baseButton = styled.button`
+  min-width: 20px;
+  min-height: 32px;
+
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+`
+
+export const AddButton = styled(baseButton)`
+  &::before {
+    content: '';
+    border-radius: 8px;
+    display: block;
+    background: ${(props) => props.theme.purple};
+    width: 1.3px;
+    height: 10.9px;
+    transform: translate(6.5px);
+  }
+  &::after {
+    content: '';
+    border-radius: 8px;
+    display: block;
+    background: ${(props) => props.theme.purple};
+    width: 10.94px;
+    height: 1.5px;
+  }
+  &:hover {
+    background: ${(props) => props.theme['base-button']};
+    border-radius: 6px;
+  }
+`
+export const MinusButton = styled(baseButton)`
+  &::after {
+    content: '';
+    border-radius: 8px;
+    display: block;
+    background: ${(props) => props.theme.purple};
+    width: 10.94px;
+    height: 1.31px;
+  }
+  &:hover {
+    background: ${(props) => props.theme['base-button']};
+    border-radius: 6px;
   }
 `

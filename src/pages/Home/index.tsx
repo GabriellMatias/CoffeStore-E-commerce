@@ -64,6 +64,7 @@ export function Home() {
                 description={product.description}
                 imgUrl={product.imgUrl}
                 priceFormatted={product.priceFormatted}
+                amount={product.amount}
               />
             )
           })}

@@ -1,13 +1,21 @@
 import { Trash } from 'phosphor-react'
-import { SelectedCoffeContainer } from './style'
+import { AddButton, MinusButton, SelectedCoffeContainer } from './style'
 import { CoffeCardProps } from '../CoffeCard'
 import { useCart } from '../../hooks/useCart'
 
 export function CoffeSelectedCard(props: CoffeCardProps) {
-  const { removeProduct } = useCart()
+  const { removeProduct, updateProductAmount } = useCart()
 
   function handleRemoveProduct(id: number) {
     removeProduct(id)
+  }
+  /* repetida [fazer componente] */
+  function handleProductIncrement(product: CoffeCardProps) {
+    updateProductAmount({ id: product.id, amount: product.amount + 1 })
+  }
+
+  function handleProductDecrement(product: CoffeCardProps) {
+    updateProductAmount({ id: product.id, amount: product.amount - 1 })
   }
 
   return (
@@ -17,8 +25,19 @@ export function CoffeSelectedCard(props: CoffeCardProps) {
         <div>
           <p>{props.title}</p>
           <div className="InputsStyle">
-            <input type="number" value={props.amount} />
-            <button onClick={() => handleRemoveProduct(props.id)}>
+            <MinusButton
+              title="Retirar mais um café"
+              onClick={() => handleProductDecrement(props)}
+            />
+            <span>{props.amount}</span>
+            <AddButton
+              title="Adicionar mais um café"
+              onClick={() => handleProductIncrement(props)}
+            />
+            <button
+              className="removeButton"
+              onClick={() => handleRemoveProduct(props.id)}
+            >
               <Trash size={16} color={'#8047F8'} />
               <span>Remover</span>
             </button>
