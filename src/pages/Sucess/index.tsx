@@ -6,8 +6,11 @@ import {
   SucessPageContainer,
 } from './style'
 import sucessImg from '../../assets/sucess_img.png'
+import { useCart } from '../../hooks/useCart'
 
 export function SucessPage() {
+  const { clientData } = useCart()
+
   return (
     <SucessPageContainer>
       <LeftSide>
@@ -22,9 +25,16 @@ export function SucessPage() {
             </i>
             <div>
               <p>
-                Entrega em <strong>Rua Joao Daniel Martinelli, 102</strong>
+                Entrega em{' '}
+                <strong>
+                  {clientData.rua
+                    ? clientData.rua
+                    : 'Rua Joao Daniel Martinelli, 102'}
+                </strong>
                 <br />
-                Farrapos- Porto Alegre, RS
+                {clientData.cidade
+                  ? `${clientData.cidade} - ${clientData.uf}`
+                  : 'Farrapos- Porto Alegre, RS'}
               </p>
             </div>
           </li>

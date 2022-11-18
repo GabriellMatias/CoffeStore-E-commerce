@@ -59,6 +59,7 @@ interface CartContextDataProps {
   updateProductAmount: ({ id, amount }: UpdateProductAmount) => void
   setNewAmount: (amount: number) => void
   setClientData: (data: ClientDataProps) => void
+  saveDataClient: (data: ClientDataProps) => void
 }
 
 const CartContext = createContext<CartContextDataProps>(
@@ -154,6 +155,11 @@ export function CartProvider({ children }: CartProviderProps) {
     setCart(productsWithoutDdeletedOne)
   }
 
+  function saveDataClient(data: ClientDataProps) {
+    setClientData(data)
+    console.log(clientData)
+  }
+
   return (
     <CartContext.Provider
       value={{
@@ -166,6 +172,7 @@ export function CartProvider({ children }: CartProviderProps) {
         setNewAmount,
         clientData,
         setClientData,
+        saveDataClient,
       }}
     >
       {children}

@@ -1,9 +1,11 @@
 import { CurrencyDollar, MapPin, CreditCard, Money, Bank } from 'phosphor-react'
 import { useForm } from 'react-hook-form'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { CoffeSelectedCard } from '../../components/CoffeSelectedCard'
 import { ClientDataProps, useCart } from '../../hooks/useCart'
 import { formatPrice } from '../../utils/format'
+import * as zod from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
 import {
   CheckOutContainer,
   FormsContainer,
@@ -14,10 +16,24 @@ import {
   SelectedContainer,
 } from './style'
 
+const formDataSchemaValidation = zod.object({
+  CEP: zod.string(),
+  rua: zod.string(),
+  numero: zod.string(),
+  complemento: zod.string(),
+  bairro: zod.string(),
+  cidade: zod.string(),
+  uf: zod.string(),
+})
+
+type formDataProps = zod.infer<typeof formDataSchemaValidation>
+
 export function CheckoutPage() {
-  const { cart, newAmount, setClientData, clientData } = useCart()
+  const { cart, newAmount, saveDataClient } = useCart()
+
   const initialPrices = formatPrice(0)
   const deliveryPriceWithProducts = formatPrice(3.5)
+
   const navigate = useNavigate()
 
   const totalWithoutDelivery = cart.reduce((sumTotal, product) => {
@@ -31,7 +47,26 @@ export function CheckoutPage() {
   const total = newAmount ? totalWithoutDelivery + 3.5 : totalWithoutDelivery
   const totalFormated = formatPrice(total)
 
-  const { register, handleSubmit } = useForm()
+  const formData = useForm<formDataProps>({
+    resolver: zodResolver(formDataSchemaValidation),
+    defaultValues: {
+      CEP: '',
+      rua: '',
+      numero: '',
+      complemento: '',
+      bairro: '',
+      cidade: '',
+      uf: '',
+    },
+  })
+
+  const { register, handleSubmit, reset } = formData
+
+  function handleSaveDataClient(data: ClientDataProps) {
+    saveDataClient(data)
+    reset()
+    navigate('/sucess')
+  }
   return (
     /* utilizar react-hook-forms */
     <CheckOutContainer>
@@ -39,13 +74,7 @@ export function CheckoutPage() {
         <h1>Complete Seu pedido</h1>
         <FormsContainer
           id="clientDataForm"
-          onSubmit={handleSubmit((data) => {
-            setClientData(data)
-            console.log(typeof data)
-            console.log(clientData)
-
-            navigate('/sucess')
-          })}
+          onSubmit={handleSubmit(handleSaveDataClient)}
         >
           <header>
             <MapPin size={22} color={'#C47F17'} />
@@ -61,19 +90,19 @@ export function CheckoutPage() {
               <input
                 type="number"
                 placeholder="Numero"
-                {...register('Numero')}
+                {...register('numero')}
               />
               <input
                 type="text"
                 placeholder="Complemento"
-                {...register('Complemento')}
+                {...register('complemento')}
               />
             </div>
 
             <div>
-              <input type="text" placeholder="Bairro" {...register('Bairro')} />
-              <input type="text" placeholder="Cidade" {...register('Cidade')} />
-              <input type="text" placeholder="UF" {...register('UF')} />
+              <input type="text" placeholder="Bairro" {...register('bairro')} />
+              <input type="text" placeholder="Cidade" {...register('cidade')} />
+              <input type="text" placeholder="UF" {...register('uf')} />
             </div>
           </InputContainer>
           <PaymentContainer>
@@ -88,7 +117,6 @@ export function CheckoutPage() {
               </div>
             </header>
             <div>
-              {/* transformar em componente */}
               <button>
                 <CreditCard size={16} color={'#8047F8'} />
                 Credit Card
