@@ -11,10 +11,18 @@ export const HeaderContainer = styled.header`
   gap: 82rem;
   height: 10.4rem;
 
+  span {
+    /* modificando*/
+    display: none;
+    margin: 0 0 -10px 85%;
+    text-decoration: none;
+  }
+
   nav {
     display: flex;
     flex-direction: row;
     align-items: center;
+    /* align-self: center; */
     justify-content: flex-end;
     gap: 1.2rem;
   }

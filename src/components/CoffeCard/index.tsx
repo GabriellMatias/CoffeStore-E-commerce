@@ -15,34 +15,30 @@ export interface CoffeCardProps {
 }
 
 export function CoffeCard(props: CoffeCardProps) {
-  const { addProduct, cart, updateProductAmount } = useCart()
+  const {
+    addProduct,
+    newAmount,
+    setNewAmount,
+    updateProductAmount,
+    productData,
+  } = useCart()
 
-  const currentItem = cart.find((product) => {
+  const currentItem = productData.map((product) => {
     return product.id === props.id
   })
-  const amount = cart.map((product) => {
+
+  const amount = productData.map((product) => {
     return product.id === props.id && product.amount
   })
 
   function handleAddProduct(id: number) {
     addProduct(id)
   }
-  /* repetida [fazer componente] */
-  function handleProductIncrement(id: number) {
-    const newCart = [...cart]
-    const productExists = newCart.find((product) => product.id === id)
-    const currentAmount = productExists ? productExists.amount : 0
-    const incrementAmount = currentAmount + 1
-    updateProductAmount({ id, amount: incrementAmount })
-  }
 
-  function handleProductDecrement(id: number) {
-    const newCart = [...cart]
-    const productExists = newCart.find((product) => product.id === id)
-    const currentAmount = productExists ? productExists.amount : 0
-    const decrementAmount = currentAmount - 1
-
-    updateProductAmount({ id, amount: decrementAmount })
+  function handleUpdateProductAmount(id: number, amount: number) {
+    setNewAmount(newAmount + amount)
+    updateProductAmount({ id, amount: newAmount })
+    console.log(newAmount)
   }
 
   return (
@@ -63,12 +59,13 @@ export function CoffeCard(props: CoffeCardProps) {
         <div className="inputStyle">
           <MinusButton
             title="Retirar mais um café"
-            onClick={() => handleProductDecrement(props.id)}
+            onClick={() => handleUpdateProductAmount(props.id, -1)}
           />
+          {/* currentItem ? newAmount : 0 */}
           <span>{currentItem ? amount : 0}</span>
           <AddButton
             title="Adicionar mais um café"
-            onClick={() => handleProductIncrement(props.id)}
+            onClick={() => handleUpdateProductAmount(props.id, +1)}
           />
           <button
             className="shoppingCartButton"

@@ -39,14 +39,26 @@ interface UpdateProductAmount {
   amount: number
 }
 
+export interface ClientDataProps {
+  CEP: string
+  rua: string
+  numero: string
+  complemento: string
+  bairro: string
+  cidade: string
+  uf: string
+}
+
 interface CartContextDataProps {
   cart: CartProps[]
   productData: Product[]
+  clientData: ClientDataProps
   newAmount: number
   addProduct: (ProductId: number) => void
   removeProduct: (id: number) => void
   updateProductAmount: ({ id, amount }: UpdateProductAmount) => void
   setNewAmount: (amount: number) => void
+  setClientData: (data: ClientDataProps) => void
 }
 
 const CartContext = createContext<CartContextDataProps>(
@@ -56,7 +68,12 @@ const CartContext = createContext<CartContextDataProps>(
 export function CartProvider({ children }: CartProviderProps) {
   const [cart, setCart] = useState<CartProps[]>([])
   const [productData, setProductData] = useState<Product[]>([])
+
   const [newAmount, setNewAmount] = useState(0)
+
+  const [clientData, setClientData] = useState<ClientDataProps>(
+    {} as ClientDataProps,
+  )
 
   /* loading products */
   useEffect(() => {
@@ -71,7 +88,7 @@ export function CartProvider({ children }: CartProviderProps) {
     loadProducts()
   }, [])
 
-  async function addProduct(ProductId: number) {
+  function addProduct(ProductId: number) {
     try {
       const newCart = [...cart]
       const productExists = newCart.find((product) => product.id === ProductId)
@@ -85,13 +102,20 @@ export function CartProvider({ children }: CartProviderProps) {
         if (newProduct) {
           const product = {
             ...newProduct,
-            amount: 1,
           }
-          /* arrumar */
           newCart.push(product)
         }
       }
+
+      const productValidation = [...productData]
+      const indexOf = productData.findIndex((item) => item.id === ProductId)
+      if (!productValidation[indexOf].amount) {
+        alert('coloque a quantidade')
+        return
+      }
+
       setCart(newCart)
+      setNewAmount(1)
     } catch (error) {
       console.log(error)
     }
@@ -99,22 +123,24 @@ export function CartProvider({ children }: CartProviderProps) {
 
   function updateProductAmount({ id, amount }: UpdateProductAmount) {
     try {
-      const newCart = [...cart]
-      const productExists = newCart.find((product) => product.id === id)
-
-      if (productExists) {
-        productExists.amount = amount
-      } else {
-        const newProduct = productData.find((item) => item.id === id)
-        if (newProduct) {
-          const product = {
-            ...newProduct,
-            amount,
-          }
-          /* arrumar */
-          newCart.push(product)
-        }
+      if (amount <= 0) {
+        return
       }
+
+      const newCart = [...cart]
+      const productExistsinCart = newCart.find((product) => product.id === id)
+      if (productExistsinCart) {
+        productExistsinCart.amount = amount
+        console.log('toaqui')
+      } else {
+        console.log('agoraaaqui')
+
+        const productDataWithAmount = [...productData]
+        const index = productData.findIndex((item) => item.id === id)
+        productDataWithAmount[index].amount = newAmount
+        setProductData(productDataWithAmount)
+      }
+
       setCart(newCart)
     } catch (error) {
       console.log(error)
@@ -138,6 +164,8 @@ export function CartProvider({ children }: CartProviderProps) {
         productData,
         newAmount,
         setNewAmount,
+        clientData,
+        setClientData,
       }}
     >
       {children}

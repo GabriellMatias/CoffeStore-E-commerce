@@ -1,7 +1,8 @@
 import { CurrencyDollar, MapPin, CreditCard, Money, Bank } from 'phosphor-react'
-import { Link } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
+import { Link, useNavigate } from 'react-router-dom'
 import { CoffeSelectedCard } from '../../components/CoffeSelectedCard'
-import { useCart } from '../../hooks/useCart'
+import { ClientDataProps, useCart } from '../../hooks/useCart'
 import { formatPrice } from '../../utils/format'
 import {
   CheckOutContainer,
@@ -14,23 +15,38 @@ import {
 } from './style'
 
 export function CheckoutPage() {
-  const { cart, newAmount } = useCart()
+  const { cart, newAmount, setClientData, clientData } = useCart()
   const initialPrices = formatPrice(0)
   const deliveryPriceWithProducts = formatPrice(3.5)
+  const navigate = useNavigate()
 
   const totalWithoutDelivery = cart.reduce((sumTotal, product) => {
     return sumTotal + product.price * product.amount
   }, 0)
 
+  const totalProducts = cart.reduce((sumTotal, product) => {
+    return (sumTotal += product.amount)
+  }, 0)
+
   const total = newAmount ? totalWithoutDelivery + 3.5 : totalWithoutDelivery
   const totalFormated = formatPrice(total)
 
+  const { register, handleSubmit } = useForm()
   return (
     /* utilizar react-hook-forms */
     <CheckOutContainer>
       <RequestContainer>
         <h1>Complete Seu pedido</h1>
-        <FormsContainer>
+        <FormsContainer
+          id="clientDataForm"
+          onSubmit={handleSubmit((data) => {
+            setClientData(data)
+            console.log(typeof data)
+            console.log(clientData)
+
+            navigate('/sucess')
+          })}
+        >
           <header>
             <MapPin size={22} color={'#C47F17'} />
             <div>
@@ -39,17 +55,25 @@ export function CheckoutPage() {
             </div>
           </header>
           <InputContainer>
-            <input type="number" placeholder="CEP" />
-            <input type="text" placeholder="Rua" />
+            <input type="number" placeholder="CEP" {...register('CEP')} />
+            <input type="text" placeholder="Rua" {...register('rua')} />
             <div>
-              <input type="number" placeholder="Numero" />
-              <input type="text" placeholder="Complemento" />
+              <input
+                type="number"
+                placeholder="Numero"
+                {...register('Numero')}
+              />
+              <input
+                type="text"
+                placeholder="Complemento"
+                {...register('Complemento')}
+              />
             </div>
 
             <div>
-              <input type="text" placeholder="Bairro" />
-              <input type="text" placeholder="Cidade" />
-              <input type="text" placeholder="UF" />
+              <input type="text" placeholder="Bairro" {...register('Bairro')} />
+              <input type="text" placeholder="Cidade" {...register('Cidade')} />
+              <input type="text" placeholder="UF" {...register('UF')} />
             </div>
           </InputContainer>
           <PaymentContainer>
@@ -104,7 +128,7 @@ export function CheckoutPage() {
           <section className="prices">
             <div>
               <p>Total itens</p>
-              <span>{newAmount}</span>
+              <span>{totalProducts}</span>
             </div>
             <div>
               <p>Entrega</p>
@@ -117,9 +141,10 @@ export function CheckoutPage() {
               <span>{cart.length ? totalFormated : initialPrices}</span>
             </div>
           </section>
-          <Link to={'/sucess'}>
-            <button type="submit">Confirmar Pedido</button>
-          </Link>
+
+          <button type="submit" form="clientDataForm">
+            Confirmar Pedido
+          </button>
         </SelectedCoffes>
       </SelectedContainer>
     </CheckOutContainer>
