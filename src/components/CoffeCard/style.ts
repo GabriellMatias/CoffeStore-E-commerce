@@ -96,32 +96,7 @@ export const CardContainer = styled.div`
       display: flex;
       justify-content: space-between;
       align-items: center;
-
-      .shoppingCartButton {
-        display: flex;
-        align-items: center;
-        padding: 0.8rem;
-        gap: 0.8rem;
-        border: none;
-        cursor: pointer;
-
-        width: 38px;
-        height: 38px;
-
-        background: ${(props) => props.theme['purple-dark']};
-        color: ${(props) => props.theme.White};
-        border-radius: 6px;
-        &:hover {
-          background: ${(props) => props.theme.purple};
-        }
-      }
     }
-    .inputStyle {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-    }
-
     > span {
       font-family: 'Baloo 2';
       font-weight: 800;
@@ -131,6 +106,32 @@ export const CardContainer = styled.div`
       text-align: right;
 
       color: ${(props) => props.theme['base-text']};
+    }
+  }
+  .inputStyle {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background-color: ${(props) => props.theme['base-hover']};
+    border-radius: 8px;
+  }
+
+  .shoppingCartButton {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem;
+    gap: 0.8rem;
+    border: none;
+    cursor: pointer;
+
+    width: 38px;
+    height: 38px;
+
+    background: ${(props) => props.theme['purple-dark']};
+    color: ${(props) => props.theme.White};
+    border-radius: 6px;
+    &:hover {
+      background: ${(props) => props.theme.purple};
     }
   }
 `

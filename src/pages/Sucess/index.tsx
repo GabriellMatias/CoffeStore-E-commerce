@@ -9,7 +9,7 @@ import sucessImg from '../../assets/sucess_img.png'
 import { useCart } from '../../hooks/useCart'
 
 export function SucessPage() {
-  const { clientData } = useCart()
+  const { clientData, cart } = useCart()
 
   return (
     <SucessPageContainer>
@@ -46,7 +46,9 @@ export function SucessPage() {
               <p>
                 Previsao de entrega
                 <br />
-                <strong>20 min - 30 min</strong>
+                <strong>
+                  {cart.length > 4 ? '30 min - 50 min' : '20 min - 30 min'}
+                </strong>
               </p>
             </div>
           </li>
@@ -58,7 +60,7 @@ export function SucessPage() {
               <p>
                 Pagamento na entrega
                 <br />
-                <strong>Cartao de credito</strong>
+                <strong>{clientData.paymentType}</strong>
               </p>
             </div>
           </li>

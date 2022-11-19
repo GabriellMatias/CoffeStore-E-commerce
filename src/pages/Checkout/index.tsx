@@ -7,6 +7,7 @@ import { formatPrice } from '../../utils/format'
 import * as zod from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
+  ButtonRadio,
   CheckOutContainer,
   FormsContainer,
   InputContainer,
@@ -24,6 +25,7 @@ const formDataSchemaValidation = zod.object({
   bairro: zod.string(),
   cidade: zod.string(),
   uf: zod.string(),
+  paymentType: zod.string(),
 })
 
 type formDataProps = zod.infer<typeof formDataSchemaValidation>
@@ -57,16 +59,19 @@ export function CheckoutPage() {
       bairro: '',
       cidade: '',
       uf: '',
+      paymentType: '',
     },
   })
 
-  const { register, handleSubmit, reset } = formData
+  const { register, handleSubmit, reset, watch } = formData
 
   function handleSaveDataClient(data: ClientDataProps) {
     saveDataClient(data)
     reset()
     navigate('/sucess')
   }
+  const selected = watch('paymentType')
+
   return (
     /* utilizar react-hook-forms */
     <CheckOutContainer>
@@ -117,20 +122,56 @@ export function CheckoutPage() {
               </div>
             </header>
             <div>
-              <button>
-                <CreditCard size={16} color={'#8047F8'} />
-                Credit Card
-              </button>
+              <ButtonRadio
+                className="radio"
+                type="button"
+                isSelected={selected === 'Credit Card'}
+              >
+                <label>
+                  <CreditCard size={16} color={'#8047F8'} />
+                  <input
+                    hidden
+                    type="radio"
+                    value="Credit Card"
+                    {...register('paymentType')}
+                  />
+                  Credit Card
+                </label>
+              </ButtonRadio>
 
-              <button>
-                <Bank size={16} color={'#8047F8'} />
-                Debit Card
-              </button>
+              <ButtonRadio
+                className="radio"
+                type="button"
+                isSelected={selected === 'Debit Card'}
+              >
+                <label>
+                  <Bank size={16} color={'#8047F8'} />
+                  <input
+                    hidden
+                    type="radio"
+                    value="Debit Card"
+                    {...register('paymentType')}
+                  />
+                  Debit Card
+                </label>
+              </ButtonRadio>
 
-              <button>
-                <Money size={16} color={'#8047F8'} />
-                Money
-              </button>
+              <ButtonRadio
+                className="radio"
+                type="button"
+                isSelected={selected === 'Money'}
+              >
+                <label>
+                  <Money size={16} color={'#8047F8'} />
+                  <input
+                    hidden
+                    type="radio"
+                    value="Money"
+                    {...register('paymentType')}
+                  />
+                  Money
+                </label>
+              </ButtonRadio>
             </div>
           </PaymentContainer>
         </FormsContainer>

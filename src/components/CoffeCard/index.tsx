@@ -67,14 +67,14 @@ export function CoffeCard(props: CoffeCardProps) {
             title="Adicionar mais um café"
             onClick={() => handleUpdateProductAmount(props.id, +1)}
           />
-          <button
-            className="shoppingCartButton"
-            type="button"
-            onClick={() => handleAddProduct(props.id)}
-          >
-            <ShoppingCart size={22} weight="fill" />
-          </button>
         </div>
+        <button
+          className="shoppingCartButton"
+          type="button"
+          onClick={() => handleAddProduct(props.id)}
+        >
+          <ShoppingCart size={22} weight="fill" />
+        </button>
       </footer>
     </CardContainer>
   )

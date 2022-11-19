@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const CheckOutContainer = styled.main`
   display: flex;
@@ -79,42 +79,60 @@ export const PaymentContainer = styled.div`
       }
     }
   }
-
   div {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1.2rem;
+  }
+`
+interface ButtonSelectedProps {
+  isSelected: boolean
+}
+export const ButtonRadio = styled.button<ButtonSelectedProps>`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 1.6rem;
+  gap: 1.2rem;
+  border: none;
 
-    button {
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      padding: 1.6rem;
-      gap: 1.2rem;
-      border: none;
+  width: 178.67px;
+  height: 51px;
 
-      width: 178.67px;
-      height: 51px;
+  background: ${(props) => props.theme['base-button']};
+  border-radius: 6px;
 
-      background: ${(props) => props.theme['base-button']};
-      border-radius: 6px;
+  font-family: 'Roboto';
 
-      font-family: 'Roboto';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 12px;
-      line-height: 160%;
+  font-size: 12px;
+  line-height: 160%;
 
-      text-transform: uppercase;
+  text-transform: uppercase;
 
-      color: ${(props) => props.theme['base-text']};
+  color: ${(props) => props.theme['base-text']};
 
-      &:hover {
-        color: ${(props) => props.theme['base-subtitle']};
-        background: ${(props) => props.theme['base-hover']};
-      }
-    }
+  &:hover {
+    ${(props) =>
+      !props.isSelected &&
+      css`
+        background: ${({ theme }) => theme['base-hover']};
+        label {
+          color: ${({ theme }) => theme['base-title']};
+        }
+      `}
+  }
+  ${(props) =>
+    props.isSelected &&
+    css`
+      background: ${({ theme }) => theme['purple-light']};
+      border: 1px solid ${({ theme }) => theme.purple};
+    `}
+  label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
   }
 `
 

@@ -47,6 +47,7 @@ export interface ClientDataProps {
   bairro: string
   cidade: string
   uf: string
+  paymentType: string
 }
 
 interface CartContextDataProps {
