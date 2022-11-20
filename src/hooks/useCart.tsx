@@ -5,6 +5,7 @@ import {
   useEffect,
   useState,
 } from 'react'
+import { toast } from 'react-toastify'
 import { api } from '../services/api'
 import { formatPrice } from '../utils/format'
 
@@ -99,6 +100,7 @@ export function CartProvider({ children }: CartProviderProps) {
 
       if (productExists) {
         productExists.amount = amount
+        toast.success('Product add to cart')
       } else {
         const newProduct = productData.find((item) => item.id === ProductId)
         if (newProduct) {
@@ -112,7 +114,7 @@ export function CartProvider({ children }: CartProviderProps) {
       const productValidation = [...productData]
       const indexOf = productData.findIndex((item) => item.id === ProductId)
       if (!productValidation[indexOf].amount) {
-        alert('coloque a quantidade')
+        toast.error('Please inform the amount')
         return
       }
 
@@ -133,10 +135,7 @@ export function CartProvider({ children }: CartProviderProps) {
       const productExistsinCart = newCart.find((product) => product.id === id)
       if (productExistsinCart) {
         productExistsinCart.amount = amount
-        console.log('toaqui')
       } else {
-        console.log('agoraaaqui')
-
         const productDataWithAmount = [...productData]
         const index = productData.findIndex((item) => item.id === id)
         productDataWithAmount[index].amount = newAmount

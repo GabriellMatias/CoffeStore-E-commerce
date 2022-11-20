@@ -213,19 +213,19 @@ export const InputContainer = styled.div`
   input[placeholder='CEP'] {
     width: 200px;
   }
-  input[placeholder='Rua'] {
+  input[placeholder='Street'] {
     width: 560px;
   }
-  input[placeholder='Numero'] {
+  input[placeholder='Number'] {
     width: 200px;
   }
-  input[placeholder='Complemento'] {
+  input[placeholder='Complement'] {
     width: 348px;
   }
-  input[placeholder='Bairro'] {
+  input[placeholder='District'] {
     width: 200px;
   }
-  input[placeholder='Cidade'] {
+  input[placeholder='City'] {
     width: 276px;
   }
   input[placeholder='UF'] {

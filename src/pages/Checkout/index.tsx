@@ -76,7 +76,7 @@ export function CheckoutPage() {
     /* utilizar react-hook-forms */
     <CheckOutContainer>
       <RequestContainer>
-        <h1>Complete Seu pedido</h1>
+        <h1>Complete your order</h1>
         <FormsContainer
           id="clientDataForm"
           onSubmit={handleSubmit(handleSaveDataClient)}
@@ -84,40 +84,68 @@ export function CheckoutPage() {
           <header>
             <MapPin size={22} color={'#C47F17'} />
             <div>
-              <h2>Endereco de Entrega</h2>
-              <span>Informe o endereco onde deseja receber seu pedido</span>
+              <h2>Delivery Adress</h2>
+              <span>
+                Enter the address where you want to receive your order
+              </span>
             </div>
           </header>
           <InputContainer>
-            <input type="number" placeholder="CEP" {...register('CEP')} />
-            <input type="text" placeholder="Rua" {...register('rua')} />
+            <input
+              type="number"
+              placeholder="CEP"
+              required
+              {...register('CEP')}
+            />
+            <input
+              type="text"
+              required
+              placeholder="Street"
+              {...register('rua')}
+            />
             <div>
               <input
                 type="number"
-                placeholder="Numero"
+                required
+                placeholder="Number"
                 {...register('numero')}
               />
               <input
                 type="text"
-                placeholder="Complemento"
+                required
+                placeholder="Complement"
                 {...register('complemento')}
               />
             </div>
 
             <div>
-              <input type="text" placeholder="Bairro" {...register('bairro')} />
-              <input type="text" placeholder="Cidade" {...register('cidade')} />
-              <input type="text" placeholder="UF" {...register('uf')} />
+              <input
+                type="text"
+                required
+                placeholder="District"
+                {...register('bairro')}
+              />
+              <input
+                type="text"
+                required
+                placeholder="City"
+                {...register('cidade')}
+              />
+              <input
+                type="text"
+                required
+                placeholder="UF"
+                {...register('uf')}
+              />
             </div>
           </InputContainer>
           <PaymentContainer>
             <header>
               <CurrencyDollar size={22} color={'#8047F8'} />
               <div className="paymentText">
-                <h2>Pagamento</h2>
+                <h2>Payment</h2>
                 <span>
-                  O pagamento e feito na entrega. Escolha a forma que deseja
-                  pagar
+                  Payment is made on delivery. Choose the shape you want pay
                 </span>
               </div>
             </header>
@@ -177,22 +205,26 @@ export function CheckoutPage() {
         </FormsContainer>
       </RequestContainer>
       <SelectedContainer>
-        <h1>Cafés Selecionados</h1>
+        <h1>Selected Coffes</h1>
         <SelectedCoffes>
-          {cart.map((product) => {
-            return (
-              <div key={product.id}>
-                <CoffeSelectedCard
-                  id={product.id}
-                  title={product.title}
-                  imgUrl={product.imgUrl}
-                  amount={product.amount}
-                  priceFormatted={product.priceFormatted}
-                />
-                <hr />
-              </div>
-            )
-          })}
+          {cart.length ? (
+            cart.map((product) => {
+              return (
+                <div key={product.id}>
+                  <CoffeSelectedCard
+                    id={product.id}
+                    title={product.title}
+                    imgUrl={product.imgUrl}
+                    amount={product.amount}
+                    priceFormatted={product.priceFormatted}
+                  />
+                  <hr />
+                </div>
+              )
+            })
+          ) : (
+            <strong> Any itens in cart :(</strong>
+          )}
 
           <section className="prices">
             <div>
@@ -200,7 +232,7 @@ export function CheckoutPage() {
               <span>{totalProducts}</span>
             </div>
             <div>
-              <p>Entrega</p>
+              <p>Delivery</p>
               <span>
                 {cart.length ? deliveryPriceWithProducts : initialPrices}
               </span>
@@ -212,7 +244,7 @@ export function CheckoutPage() {
           </section>
 
           <button type="submit" form="clientDataForm">
-            Confirmar Pedido
+            Confirm order
           </button>
         </SelectedCoffes>
       </SelectedContainer>

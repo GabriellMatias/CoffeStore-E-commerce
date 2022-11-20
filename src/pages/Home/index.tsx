@@ -11,10 +11,10 @@ export function Home() {
     <Container>
       <ContainerHeader>
         <div>
-          <h1>Encontre o café perfeito para qualquer hora do dia</h1>
+          <h1>Find the perfect coffee for any time of day</h1>
           <p>
-            Com o Coffee Delivery você recebe seu café onde estiver, a qualquer
-            hora
+            With Coffee Delivery you get your coffee wherever you are, at any
+            time hour
           </p>
 
           <ul>
@@ -23,25 +23,25 @@ export function Home() {
               <i className="shoppingCart">
                 <ShoppingCart size={16} weight="fill" color="#fff" />
               </i>
-              <span>Compra simples e segura</span>
+              <span>Simple and safe buy</span>
             </li>
             <li>
               <i className="package">
                 <Package size={16} weight="fill" color="#fff" />
               </i>
-              <span>Embalagem Mantem o Cafe Intacto</span>
+              <span>Packaging Keeps the Coffe Intact</span>
             </li>
             <li>
               <i className="deliveryTime">
                 <Timer size={16} weight="fill" color="#fff" />
               </i>
-              <span>Entrega Rapida e Rastreada</span>
+              <span>Fast and Tracked Delivery</span>
             </li>
             <li>
               <i className="coffee">
                 <Coffee size={16} weight="fill" color="#fff" />
               </i>
-              <span>O Cafe chega Fresquinho ate voce</span>
+              <span>Coffe arrives fresh until you</span>
             </li>
           </ul>
         </div>
@@ -50,7 +50,7 @@ export function Home() {
       </ContainerHeader>
 
       <ContainerCoffeList>
-        <h1>Nossos Cafés</h1>
+        <h1>Ours Coffes</h1>
 
         <main>
           {productData.map((product) => {

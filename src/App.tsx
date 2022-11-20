@@ -7,6 +7,8 @@ import { Home } from './pages/Home'
 import { CheckoutPage } from './pages/Checkout'
 import { SucessPage } from './pages/Sucess'
 import { CartProvider } from './hooks/useCart'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.min.css'
 
 export function App() {
   return (
@@ -21,6 +23,7 @@ export function App() {
             <Route path="/sucess" element={<SucessPage />} />
           </Routes>
         </CartProvider>
+        <ToastContainer />
       </ThemeProvider>
     </BrowserRouter>
   )

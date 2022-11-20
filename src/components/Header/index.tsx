@@ -14,7 +14,7 @@ export function Header() {
       <nav>
         <p>
           <MapPin size={22} weight="fill" />
-          Posse-Goias
+          Brasilia - Federal District
         </p>
         <Link to={'/checkout'}>
           <span>{cart.length}</span>

@@ -15,8 +15,8 @@ export function SucessPage() {
     <SucessPageContainer>
       <LeftSide>
         <div>
-          <h1>Uhu! Pedido Confirmado</h1>
-          <h2>Agora é só aguardar que logo o café chegará até você</h2>
+          <h1>Heyy! Order confirmed</h1>
+          <h2>Now just wait the coffee to come to you soon</h2>
         </div>
         <DeliveryInformations>
           <li>
@@ -25,7 +25,7 @@ export function SucessPage() {
             </i>
             <div>
               <p>
-                Entrega em{' '}
+                Delivery in{' '}
                 <strong>
                   {clientData.rua
                     ? clientData.rua
@@ -34,7 +34,7 @@ export function SucessPage() {
                 <br />
                 {clientData.cidade
                   ? `${clientData.cidade} - ${clientData.uf}`
-                  : 'Farrapos- Porto Alegre, RS'}
+                  : 'Brasilia - Federal District'}
               </p>
             </div>
           </li>
@@ -44,7 +44,7 @@ export function SucessPage() {
             </i>
             <div>
               <p>
-                Previsao de entrega
+                Delivery Prevision
                 <br />
                 <strong>
                   {cart.length > 4 ? '30 min - 50 min' : '20 min - 30 min'}
@@ -58,9 +58,11 @@ export function SucessPage() {
             </i>
             <div>
               <p>
-                Pagamento na entrega
+                Payment on delivery
                 <br />
-                <strong>{clientData.paymentType}</strong>
+                <strong>
+                  {clientData.paymentType ? clientData.paymentType : 'Money'}
+                </strong>
               </p>
             </div>
           </li>
