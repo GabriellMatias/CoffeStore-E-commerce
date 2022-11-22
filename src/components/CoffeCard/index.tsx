@@ -1,6 +1,7 @@
 import { ShoppingCart } from 'phosphor-react'
 import { AddButton, CardContainer, MinusButton } from './style'
 import { useCart } from '../../hooks/useCart'
+import { toast } from 'react-toastify'
 
 export interface CoffeCardProps {
   id: number
@@ -36,6 +37,10 @@ export function CoffeCard(props: CoffeCardProps) {
   }
 
   function handleUpdateProductAmount(id: number, amount: number) {
+    if (newAmount <= 0) {
+      toast.error('invalid type')
+      return
+    }
     setNewAmount(newAmount + amount)
     updateProductAmount({ id, amount: newAmount })
     console.log(newAmount)

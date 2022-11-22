@@ -72,7 +72,7 @@ export function CartProvider({ children }: CartProviderProps) {
   const [cart, setCart] = useState<CartProps[]>([])
   const [productData, setProductData] = useState<Product[]>([])
 
-  const [newAmount, setNewAmount] = useState(0)
+  const [newAmount, setNewAmount] = useState(1)
 
   const [clientData, setClientData] = useState<ClientDataProps>(
     {} as ClientDataProps,
@@ -102,20 +102,21 @@ export function CartProvider({ children }: CartProviderProps) {
         productExists.amount = amount
         toast.success('Product add to cart')
       } else {
+        const productValidation = [...productData]
+        const indexOf = productData.findIndex((item) => item.id === ProductId)
+        if (!productValidation[indexOf].amount) {
+          toast.error('Please inform the amount')
+          return
+        }
         const newProduct = productData.find((item) => item.id === ProductId)
         if (newProduct) {
           const product = {
             ...newProduct,
+            amount: newAmount - 1,
           }
+          toast.success('Product add to cart')
           newCart.push(product)
         }
-      }
-
-      const productValidation = [...productData]
-      const indexOf = productData.findIndex((item) => item.id === ProductId)
-      if (!productValidation[indexOf].amount) {
-        toast.error('Please inform the amount')
-        return
       }
 
       setCart(newCart)
